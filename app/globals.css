@@ -1,0 +1,19 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+  .padding {
+    @apply px-10 lg:px-36;
+  }
+
+  .flex-center {
+    @apply flex items-center justify-center;
+  }
+}
+
+input,
+button,
+textarea {
+  font-family: inherit;
+}
