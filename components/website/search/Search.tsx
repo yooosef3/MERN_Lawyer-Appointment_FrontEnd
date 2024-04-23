@@ -26,7 +26,7 @@ const Search = ({
 
   let skillLawyers = nameResult;
   const selectedSkills: any = searchState?.selectedSkills;
-  if (selectedSkills && selectedSkills.length > 0) {
+  if (selectedSkills && selectedSkills?.length > 0) {
     skillLawyers = nameResult.filter((item: LawyerProps) =>
       selectedSkills.some((skill: { label: string; slug: string }) =>
         item.skills.includes(skill.slug)
@@ -52,7 +52,7 @@ const Search = ({
     indexOfFirstLawyer,
     indexOfLastLawyer
   );
-  const totalPages = Math.ceil(sortedLawyers.length / lawyersPerPage);
+  const totalPages = Math.ceil(sortedLawyers?.length / lawyersPerPage);
 
   const pageNumbers = [];
   for (let i = 1; i <= totalPages; i++) {

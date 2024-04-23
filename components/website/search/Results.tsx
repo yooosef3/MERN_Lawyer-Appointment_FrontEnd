@@ -15,7 +15,7 @@ const Results = ({ results, city, setSortOption }: ResultsProps) => {
             <Title
               className="text-sm md:text-base"
               smaller
-              title={`${results?.length} نتیجه برای شهر ${decodeURIComponent(
+              title={`${results?.length || 0} نتیجه برای شهر ${decodeURIComponent(
                 city
               )} یافت شد!`}
             />

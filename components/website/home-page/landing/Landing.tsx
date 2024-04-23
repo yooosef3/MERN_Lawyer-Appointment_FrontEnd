@@ -22,11 +22,13 @@ const Landing = () => {
   const router = useRouter();
   const [searched, setSearched] = useState("");
   const getSearchData = async (e: { preventDefault: () => void }) => {
-    e.preventDefault();
-    const city = decodeURIComponent(searched);
-    const searchQuery = decodeURIComponent("searchQuery=شایان");
-    const url = `/search/${city}`;
-    router.push(url);
+    if (searched.length !== 0) {
+      e.preventDefault();
+      const city = decodeURIComponent(searched);
+      const searchQuery = decodeURIComponent("searchQuery=شایان");
+      const url = `/search/${city}`;
+      router.push(url);
+    }
   };
 
   return (

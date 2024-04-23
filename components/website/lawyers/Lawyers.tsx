@@ -19,7 +19,10 @@ const Lawyers = () => {
   const router = useRouter();
   const { data: lawyers, isLoading, isError } = useAllApprovedLawyers();
 
-  if (isError) toast.error("مشکلی رخ داده است!");
+  if (isError) {
+    toast.error("برای دسترسی به وکلا باید وارد شوید!");
+    router.push("/login");
+  }
 
   const text =
     "خیلی دور، پشت کلمه کوه ها، دور از کشورهای ژاپن و ایران و دوست داریم شما همیشه پیروز مراحل زندگی شوید";
@@ -34,9 +37,13 @@ const Lawyers = () => {
         <Text className="max-w-3xl" text={text} />
       </div>
       <div className="grid md:grid-cols-[1fr_1fr] lg:grid-cols-[1fr_1fr_1fr_1fr] gap-5">
-        {isLoading ? <Loader /> : lawyers?.data?.data?.map((lawyer:LawyerProps) => (
-          <LawyerCard key={lawyer._id} {...lawyer} />
-        ))}
+        {isLoading ? (
+          <Loader />
+        ) : (
+          lawyers?.data?.data?.map((lawyer: LawyerProps) => (
+            <LawyerCard key={lawyer._id} {...lawyer} />
+          ))
+        )}
       </div>
     </div>
   );

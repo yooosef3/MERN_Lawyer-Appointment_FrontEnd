@@ -1,4 +1,4 @@
-import { FaHome, FaUserGraduate } from "react-icons/fa";
+import { FaHome, FaUser, FaUserGraduate } from "react-icons/fa";
 
 import { HiMiniUser } from "react-icons/hi2";
 import { HiTemplate } from "react-icons/hi";
@@ -19,6 +19,12 @@ const items = [
     label: "تماس با ما",
     route: "/contact",
     icon: <PiPhoneDisconnectFill />,
+  },
+  {
+    id: 7,
+    label: "ورود",
+    route: "/login",
+    icon: <FaUser />,
   },
 ];
 const Sidebar = ({ open, setOpen }: { open: boolean; setOpen: any }) => {
