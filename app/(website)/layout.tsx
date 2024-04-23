@@ -8,29 +8,30 @@ import Header from "@/components/website/layout/Header";
 import api from "@/configs/api";
 import { setUser } from "@/redux/userSlice";
 
-const PublicLayout = ({ children }:{children:React.ReactNode}) => {
+const PublicLayout = ({ children }: { children: React.ReactNode }) => {
   const dispatch = useDispatch();
   const { user } = useSelector((state: any) => state.user);
-  const token = localStorage?.getItem("token") || "";
-
-  const getUser = async () => {
-    try {
-      const response = await api.post("api/user/get-user-info-by-id", {
-        token,
-      });
-      if (response.data.success) {
-        dispatch(setUser(response.data.data));
-      }
-    } catch (error) {
-      console.log(error);
-    }
-  };
 
   useEffect(() => {
+    const token = localStorage?.getItem("token") || "";
+
+    const getUser = async () => {
+      try {
+        const response = await api.post("api/user/get-user-info-by-id", {
+          token,
+        });
+        if (response.data.success) {
+          dispatch(setUser(response.data.data));
+        }
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
     if (!user) {
       getUser();
     }
-  }, [user]);
+  }, [user, dispatch]);
   return (
     <>
       <Header />

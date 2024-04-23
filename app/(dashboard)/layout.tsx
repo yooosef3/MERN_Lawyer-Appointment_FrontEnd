@@ -17,34 +17,32 @@ const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
   const router = useRouter();
   const dispatch = useDispatch();
   const { user } = useSelector((state: any) => state.user);
-  const token = localStorage?.getItem("token") || "";
-  if (!token) return router.push("/login");
-
-  const getUser = async () => {
-    try {
-      const response = await api.post("api/user/get-user-info-by-id", {
-        token: localStorage.getItem("token"),
-      });
-      if (response.data.success) {
-        dispatch(setUser(response.data.data));
-      } else {
+  useEffect(() => {
+    const token = localStorage?.getItem("token") || "";
+    if (!token) return router.push("/login");
+    const getUser = async () => {
+      try {
+        const response = await api.post("api/user/get-user-info-by-id", {
+          token: localStorage.getItem("token"),
+        });
+        if (response.data.success) {
+          dispatch(setUser(response.data.data));
+        } else {
+          localStorage.clear();
+          router.push("/login");
+        }
+      } catch (error) {
         localStorage.clear();
         router.push("/login");
       }
-    } catch (error) {
-      localStorage.clear();
-      router.push("/login");
-    }
-  };
-
-  useEffect(() => {
+    };
     if (!user) {
       getUser();
     }
-  }, [user]);
+  }, []);
 
   return (
-    <CollapsedContext.Provider value={{collapsed, setCollapsed}}>
+    <CollapsedContext.Provider value={{ collapsed, setCollapsed }}>
       <div className="p-5 h-[100vh] bg-white">
         <div className="flex h-full gap-5">
           <aside
