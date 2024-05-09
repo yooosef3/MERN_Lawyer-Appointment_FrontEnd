@@ -3,7 +3,7 @@
 import React, { useState } from "react";
 
 import { FormValues } from "@/app/types/types";
-import ImageToBase64 from "@/lib/imageTobase64";
+import ImageToBase64 from "@/lib/ImageToBase64";
 import LawyerForm from "../../LawyerForm";
 import Loader from "@/components/Loader";
 import api from "@/configs/api";

@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import ImageToBase64 from "@/lib/imageTobase64";
+import ImageToBase64 from "@/lib/ImageToBase64";
 import Link from "next/link";
 import Loader from "@/components/Loader";
 import avatar from "@/public/images/lawyers/Netflix-avatar.png";
