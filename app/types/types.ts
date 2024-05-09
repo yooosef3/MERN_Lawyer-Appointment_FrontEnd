@@ -3,13 +3,13 @@ export type LawyerProps = {
   userId: string;
   firstName: string;
   lastName: string;
-  imageUrl: string | "";
+  profile: string | "";
   phoneNumber: number;
   website: string;
   address: string;
   city: string;
   specialization: string;
-  skills: string[] | string ;
+  skills: string[] | string;
   experience: string;
   feePerConsultation: number;
   timings: string[];
@@ -40,6 +40,7 @@ export type NotificationProps = {
   message: string;
   createdAt: string;
   onClickPath: string;
+  profile?: string;
 };
 
 export interface CommentCardProps {
@@ -84,7 +85,7 @@ export interface LawyerCardProps {
   timings: string[];
   specialization: string;
   status: string;
-  imageUrl: string;
+  profile?: string;
   lawyer: LawyerProps;
   changeStatus: (lawyer: LawyerProps, status: string) => void;
 }
@@ -94,6 +95,7 @@ export type UserCardProps = {
   email: string;
   isLawyer: boolean;
   isAdmin: boolean;
+  profile: string;
 };
 
 export type FormValues = {
@@ -113,6 +115,8 @@ export type LawyerFormProps = {
   initialValues?: LawyerProps;
   setSelectedSkills?: any;
   selectedSkills?: any;
+  userImage: string;
+  handleImageChange: any;
 };
 
 export type BlogCardProps = {

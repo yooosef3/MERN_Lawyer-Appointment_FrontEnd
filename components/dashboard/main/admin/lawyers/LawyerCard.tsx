@@ -10,7 +10,7 @@ const LawyerCard = ({
   timings,
   specialization,
   status,
-  imageUrl,
+  profile,
   lawyer,
   changeStatus,
 }:LawyerCardProps) => {
@@ -22,7 +22,7 @@ const LawyerCard = ({
             width={300}
             height={300}
             alt="doctor"
-            src={imageUrl || lawyerProf}
+            src={profile || lawyerProf}
             className="w-12 h-12 rounded-full"
           />
           <div>

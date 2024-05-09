@@ -1,13 +1,12 @@
 import Image from "next/image";
 import { UserCardProps } from "@/app/types/types";
-import admin from "@/public/images/lawyers/lawyer.jpg";
-import profile from "@/public/images/lawyers/avatar-person.svg";
 
 const UserCard = ({
     name,
     email,
     isLawyer,
-    isAdmin
+    isAdmin,
+    profile
 }:UserCardProps) => {
   return (
     <tr className={` ${isAdmin ? "bg-green-100": "odd:bg-slate-50 hover:bg-black/10"}  py-5 duration-200`}>
@@ -17,7 +16,7 @@ const UserCard = ({
             width={300}
             height={300}
             alt="doctor"
-            src={isAdmin ? admin : profile}
+            src={profile}
             className="w-12 h-12 rounded-full"
           />
           <div>

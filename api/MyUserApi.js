@@ -4,8 +4,8 @@ import api from "@/configs/api";
 import toast from "react-hot-toast";
 
 const useRegister = () => {
-  const register = async (data) => {
-    const response = await api.post("api/user/register", data);
+  const register = async (userData) => {
+    const response = await api.post("api/user/register", userData);
     if (response.data.success) {
       toast.success(response.data.message);
     }

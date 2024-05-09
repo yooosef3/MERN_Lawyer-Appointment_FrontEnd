@@ -17,7 +17,7 @@ import { useSelector } from "react-redux";
 
 const Sidebar = () => {
   const { user } = useSelector((state: any) => state.user);
-  const { collapsed }:any = useContext(CollapsedContext);
+  const { collapsed }: any = useContext(CollapsedContext);
   const pathname = usePathname();
   const router = useRouter();
   const userMenu = [
@@ -109,15 +109,17 @@ const Sidebar = () => {
     <>
       <div className="flex border-b pb-5 border-gray-400 flex-col items-center gap-1">
         <Image
-          className={`"grayscale cursor-pointer h-12 w-12 ${
-            !collapsed && "lg:h-40 lg:w-40"
+          className={`"grayscale cursor-pointer rounded-full h-12 w-12 ${
+            !collapsed && "lg:h-28 lg:w-28"
           } "`}
-          src={logo}
+          src={user?.profile}
           alt="logo"
+          width={400}
+          height={400}
           onClick={() => router.push("/")}
         />
         <h2 className={`font-bold hidden ${!collapsed && "lg:block"}`}>
-          وکیل خوب
+          {user?.name || `${user?.firstName} ${user?.lastName}`}
         </h2>
       </div>
       <div className="space-y-3 mt-5">

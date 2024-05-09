@@ -7,7 +7,7 @@ import Image from "next/image";
 import { NotificationProps } from "@/app/types/types";
 import api from "@/configs/api";
 import { format } from "timeago.js";
-import profile from "@/public/images/dashboard/customer.jpg";
+import profile from "@/public/images/lawyers/avatar-person.svg";
 import { setUser } from "@/redux/userSlice";
 import toast from "react-hot-toast";
 import { useRouter } from "next/navigation";
@@ -74,7 +74,7 @@ const Notifs = ({ setOpenNotifs }:any) => {
                   className="w-11 h-11 rounded-full"
                   width={500}
                   height={500}
-                  src={profile}
+                  src={notification?.profile || profile}
                   alt="user"
                 />
                 <div>

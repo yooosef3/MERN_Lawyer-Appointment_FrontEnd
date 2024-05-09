@@ -5,6 +5,7 @@ import { useMutation, useQuery } from "@tanstack/react-query";
 import { useParams, useRouter } from "next/navigation";
 
 import { FormValues } from "@/app/types/types";
+import ImageToBase64 from "@/lib/imageTobase64";
 import LawyerForm from "../../LawyerForm";
 import Loader from "@/components/Loader";
 import api from "@/configs/api";
@@ -17,6 +18,7 @@ function LawyerProfile() {
   const { user } = useSelector((state: any) => state.user);
   const { lawyerId } = useParams();
   const [lawyer, setLawyer] = useState();
+  const [userImage, setUserImage] = useState("");
 
   const getLawyerData = async () => {
     try {
@@ -41,6 +43,7 @@ function LawyerProfile() {
       const response = await api.post("api/lawyer/update-lawyer-profile", {
         ...values,
         userId: user._id,
+        profile: userImage,
         timings: [
           moment(values.timings[0]).format("HH:mm"),
           moment(values.timings[1]).format("HH:mm"),
@@ -68,9 +71,22 @@ function LawyerProfile() {
   const onFinish = async (values: FormValues) => {
     mutate(values);
   };
-
+  const handleImageChange = async (e:any) => {
+    const file = e.target.files && e.target.files[0];
+    const userProfile = await ImageToBase64(file);
+    setUserImage(userProfile);
+  };
   return (
-    <>{lawyer && <LawyerForm onFinish={onFinish} initialValues={lawyer} />}</>
+    <>
+      {lawyer && (
+        <LawyerForm
+          onFinish={onFinish}
+          initialValues={lawyer}
+          userImage={userImage}
+          handleImageChange={handleImageChange}
+        />
+      )}
+    </>
   );
 }
 

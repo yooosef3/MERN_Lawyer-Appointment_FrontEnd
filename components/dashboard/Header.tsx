@@ -52,7 +52,7 @@ const Header = () => {
             <div className="flex items-center gap-3">
               <Image
                 className="w-11 h-11 rounded-full"
-                src={user?.isAdmin ? admin : profile}
+                src={user?.profile || profile}
                 width={500}
                 height={600}
                 alt="profile"

@@ -8,13 +8,14 @@ import Title from "../Title";
 import avatar from "@/public/images/lawyers/Netflix-avatar.png";
 import { getSkills } from "@/lib/data";
 import moment from "moment";
-import profile from "@/public/images/lawyers/lawyer.jpg";
 
 const LawyerForm = ({
   onFinish,
   initialValues,
   setSelectedSkills,
   selectedSkills,
+  userImage,
+  handleImageChange
 }: LawyerFormProps) => {
   const skills = getSkills();
   const handleCheckboxChange = (event: any) => {
@@ -50,7 +51,7 @@ const LawyerForm = ({
         <div className="flex flex-col lg:flex-row items-center gap-10 mb-10">
           <Image
             className="w-24 lg:w-32 h-24 lg:h-32 rounded-full shadow-md"
-            src={initialValues?.status === "approved" ? profile : avatar}
+            src={userImage || initialValues?.profile || avatar}
             width={600}
             height={600}
             alt="profile"
@@ -61,7 +62,7 @@ const LawyerForm = ({
                 className="opacity-0 absolute inset-0 cursor-pointer"
                 type="file"
                 accept=".jpg, .jpeg, .png"
-                onChange={(e) => (e.target.files ? e.target.files[0] : null)}
+                onChange={handleImageChange}
               />
               <BsFillCloudUploadFill className="text-white text-2xl" />
             </div>

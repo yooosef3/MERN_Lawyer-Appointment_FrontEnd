@@ -3,6 +3,7 @@
 import React, { useState } from "react";
 
 import { FormValues } from "@/app/types/types";
+import ImageToBase64 from "@/lib/imageTobase64";
 import LawyerForm from "../../LawyerForm";
 import Loader from "@/components/Loader";
 import api from "@/configs/api";
@@ -16,6 +17,7 @@ function ApplyLawyer() {
   const router = useRouter();
   const { user } = useSelector((state: any) => state.user);
   const [selectedSkills, setSelectedSkills] = useState([]);
+  const [userImage, setUserImage] = useState("");
 
   const applyLawyer = async (formData: FormValues) => {
     try {
@@ -46,6 +48,12 @@ function ApplyLawyer() {
     return <Loader />;
   }
 
+  const handleImageChange = async (e:any) => {
+    const file = e.target.files && e.target.files[0];
+    const userProfile = await ImageToBase64(file);
+    setUserImage(userProfile);
+  };
+
   const onFinish = async (values: FormValues) => {
     const formData = new FormData();
     formData.append("firstName", values.firstName);
@@ -56,7 +64,7 @@ function ApplyLawyer() {
     formData.append("specialization", values.specialization);
     formData.append("experience", values.experience.toString());
     formData.append("feePerConsultation", values.feePerConsultation.toString());
-    values.timings.forEach((timing:string, index:number) => {
+    values.timings.forEach((timing: string, index: number) => {
       formData.append(`timings[${index}]`, timing);
     });
     selectedSkills.forEach((skill, index) => {
@@ -69,6 +77,7 @@ function ApplyLawyer() {
     const formValues = {
       ...values,
       skills: selectedSkills,
+      profile: userImage,
     };
     mutate(formValues);
   };
@@ -78,6 +87,8 @@ function ApplyLawyer() {
       onFinish={onFinish}
       selectedSkills={selectedSkills}
       setSelectedSkills={setSelectedSkills}
+      userImage={userImage}
+      handleImageChange={handleImageChange}
     />
   );
 }

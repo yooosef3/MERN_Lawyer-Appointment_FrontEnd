@@ -19,7 +19,7 @@ const NotificationsPage = () => {
   const router = useRouter();
   const dispatch = useDispatch();
   const { user } = useSelector((state: any) => state.user);
-  console.log(user?.unseenNotifications);
+  
   const markAllAsSeen = async () => {
     try {
       dispatch(showLoading());
@@ -105,8 +105,8 @@ const NotificationsPage = () => {
                     <Image
                       width={300}
                       height={300}
-                      alt="doctor"
-                      src={lawyer}
+                      alt="lawyer"
+                      src={notification?.profile || ''}
                       className="w-12 h-12 rounded-full"
                     />
                     <h2 className="font-bold text-gray-700">
@@ -148,7 +148,7 @@ const NotificationsPage = () => {
                       width={300}
                       height={300}
                       alt="doctor"
-                      src={lawyer}
+                      src={notification?.profile || ''}
                       className="w-12 h-12 rounded-full"
                     />
                     <h2 className="font-bold text-gray-700">
