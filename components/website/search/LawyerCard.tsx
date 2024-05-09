@@ -19,7 +19,7 @@ const LawyerCard = ({
   lastName,
   skills,
   _id,
-  imageUrl,
+  profile,
   feePerConsultation,
   website,
   address,
@@ -33,7 +33,7 @@ const LawyerCard = ({
           className="w-52 h-52 object-cover rounded-md"
           width={300}
           height={300}
-          src={imageUrl || lawyer_profile}
+          src={profile || lawyer_profile}
           alt="lawyer"
         />
         <div>
@@ -69,7 +69,7 @@ const LawyerCard = ({
         />
         <TextAndIcon
           className="text-neutral-500"
-          text={`${feePerConsultation?.toLocaleString()} هزار تومان در ساعت`}
+          text={`${feePerConsultation?.toLocaleString()} تومان در ساعت`}
           icon={<FaMoneyBillAlt />}
         />
         <button

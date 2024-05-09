@@ -102,7 +102,7 @@ const LawyerInfo = () => {
             className="w-52 h-52 object-cover rounded-md"
             width={300}
             height={300}
-            src={lawyer?.imageUrl || lawyer_profile}
+            src={lawyer?.profile || lawyer_profile}
             alt="lawyer"
           />
           <div>
@@ -141,7 +141,7 @@ const LawyerInfo = () => {
           />
           <TextAndIcon
             className="text-neutral-500"
-            text={`${lawyer?.feePerConsultation?.toLocaleString()} هزار تومان در ساعت`}
+            text={`${lawyer?.feePerConsultation?.toLocaleString()} تومان در ساعت`}
             icon={<FaMoneyBillAlt />}
           />
           <button

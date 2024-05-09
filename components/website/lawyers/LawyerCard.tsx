@@ -11,7 +11,7 @@ import { animateWithGsap } from "@/lib/animations";
 import { useGSAP } from "@gsap/react";
 import { useRouter } from "next/navigation";
 
-const LawyerCard = ({_id, specialization, imageUrl, firstName, lastName}:LawyerProps) => {
+const LawyerCard = ({_id, specialization, profile, firstName, lastName}:LawyerProps) => {
   const router = useRouter();
   const socials = [
     { id: 1, icon: <FaLinkedinIn /> },
@@ -36,7 +36,7 @@ const LawyerCard = ({_id, specialization, imageUrl, firstName, lastName}:LawyerP
       <div className="h-80 overflow-hidden">
         <Image
           alt="lawyer"
-          src={imageUrl}
+          src={profile}
           width={900}
           height={900}
           className="h-full object-cover group-hover:scale-105 duration-200"
