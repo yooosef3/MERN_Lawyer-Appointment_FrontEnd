@@ -39,7 +39,7 @@ const RegisterForm = () => {
   }
 
   if (isError) {
-    toast.error("مشکلی رخ داده است!");
+    toast.error('سایز عکس نباید بیش از 5mb باشد!');
   }
 
   const handleImageChange = async (e:any) => {
