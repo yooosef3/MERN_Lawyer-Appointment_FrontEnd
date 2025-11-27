@@ -39,11 +39,18 @@ const RegisterForm = () => {
   }
 
   if (isError) {
-    toast.error('سایز عکس نباید بیش از 5mb باشد!');
+    toast.error("سایز عکس نباید بیش از 5mb باشد!");
   }
 
-  const handleImageChange = async (e:any) => {
+  const handleImageChange = async (e: any) => {
     const file = e.target.files && e.target.files[0];
+    if (!file) return;
+
+    if (file.size > 5 * 1024 * 1024) {
+      toast.error("سایز عکس نباید بیش از 5mb باشد!");
+      return;
+    }
+
     const userProfile = await ImageToBase64(file);
     setUserImage(userProfile);
   };
@@ -51,7 +58,7 @@ const RegisterForm = () => {
   const onSubmit = handleSubmit(async (data) => {
     const userData = {
       ...data,
-      profile: userImage,
+      // profile: userImage,
     };
     mutate(userData);
   });
@@ -61,26 +68,31 @@ const RegisterForm = () => {
       className="flex flex-col gap-5 w-[350px] lg:w-[400px] rounded-xl shadow-md p-5 bg-white/50"
       onSubmit={onSubmit}
     >
-      <div className="flex justify-center items-center ">
-          <div className="w-20 h-20 rounded-full bg-slate-100 relative overflow-hidden drop-shadow-md shadow-md">
-            <Image src={userImage || avatar} width={300} height={300} alt="sign up" />
+      {/* <div className="flex justify-center items-center ">
+        <div className="w-20 h-20 rounded-full bg-slate-100 relative overflow-hidden drop-shadow-md shadow-md">
+          <Image
+            src={userImage || avatar}
+            width={300}
+            height={300}
+            alt="sign up"
+          />
 
-            <label htmlFor="profileImage">
-              <div className="text-center absolute bottom-0 w-full h-1/3 bg-slate-600 bg-opacity-80 cursor-pointer">
-                <p className="text-xs drop-shadow py-1 text-slate-100">
-                  آپلود عکس
-                </p>
-              </div>
-              <input
-                type={"file"}
-                id="profileImage"
-                className="hidden"
-                accept="image/*"
-                onChange={handleImageChange}
-              />
-            </label>
-          </div>
+          <label htmlFor="profileImage">
+            <div className="text-center absolute bottom-0 w-full h-1/3 bg-slate-600 bg-opacity-80 cursor-pointer">
+              <p className="text-xs drop-shadow py-1 text-slate-100">
+                آپلود عکس
+              </p>
+            </div>
+            <input
+              type={"file"}
+              id="profileImage"
+              className="hidden"
+              accept="image/*"
+              onChange={handleImageChange}
+            />
+          </label>
         </div>
+      </div> */}
       <h2 className="text-xl text-gray-800 text-center font-bold border-b pb-4 border-slate-300">
         ثبت نام کن
       </h2>
